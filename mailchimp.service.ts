@@ -6,15 +6,17 @@ const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
 
 const axios = Axios.create({
     baseURL: endpoint,
-    headers: { Authorization: ``}
+    headers: { Authorization: `${key}`}
 });
 
 
 const addUser = async ( params ) => {
     let ret = {};
+    const url = `lists/${audienceId}/members/`;
 
     try {
-        
+        const res = await axios.post(url, params);
+        ret = res.data;
     } catch (error) {
         throw new Error(error.message);
     }
@@ -26,7 +28,7 @@ const deleteUser = async ( params ) => {
     let ret = {};
     
     try {
-        
+        ret = params;
     } catch (error) {
         throw new Error(error.message);
     }
@@ -38,7 +40,7 @@ const updateUser = async ( params ) => {
     let ret = {};
     
     try {
-        
+        ret = params;
     } catch (error) {
         throw new Error(error.message);
     }
@@ -50,7 +52,7 @@ const getUsers = async ( params ) => {
     let ret = {};
     
     try {
-        
+        ret = params;
     } catch (error) {
         throw new Error(error.message);
     }
